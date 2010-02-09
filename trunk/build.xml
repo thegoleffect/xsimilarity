@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="ke-lexical" default="help">
+<project name="xsimilarity" default="help">
 
 	<!-- Load all the default properties, and any the user wants    -->
 	<!-- to contribute (without having to type -D or edit this file -->
@@ -29,7 +29,7 @@
 	<target name="init" description="make initial dirs">
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.classes.main}" />
-       	<mkdir dir="${build.classes.test}" />
+	       	<mkdir dir="${build.classes.test}" />
 		<mkdir dir="${build.docs}" />
 		<mkdir dir="${build.javadoc}" />
 	</target>
@@ -43,12 +43,12 @@
 
 	<target name="help">
 		<echo message="" />
-		<echo message="ke lexical building help" />
+		<echo message="xsimilarity building help" />
 		<echo message="------------------------------------------------------" />
 		<echo message="clean" />
 		<echo message="compile" />
 		<echo message="jar" />
-		<echo message="install" />
+		<echo message="source" />
 	</target>
 
 	<!-- ====================================================== -->
