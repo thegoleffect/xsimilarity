@@ -11,9 +11,9 @@
 
 	<!-- the normal classpath -->
 	<path id="classpath">
-		<pathelement location="${build.classes.main}"/>
-       	<pathelement location="${build.classes.test}"/>
-       	<pathelement location="${src.resources}"/>
+		<pathelement location="${build.classes.main}" />
+		<pathelement location="${build.classes.test}" />
+		<pathelement location="${src.resources}" />
 		<fileset dir="${lib.dir}">
 			<include name="**/*.jar" />
 		</fileset>
@@ -29,7 +29,7 @@
 	<target name="init" description="make initial dirs">
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.classes.main}" />
-	       	<mkdir dir="${build.classes.test}" />
+		<mkdir dir="${build.classes.test}" />
 		<mkdir dir="${build.docs}" />
 		<mkdir dir="${build.javadoc}" />
 	</target>
@@ -60,7 +60,7 @@
 			<classpath refid="classpath" />
 		</javac>
 
-	    <javac destdir="${build.classes.test}" encoding="${build.encoding}" includes="**/**/*.java" debug="${debug}" fork="${fork}" optimize="${optimize}" source="${source}" deprecation="${deprecation}">
+		<javac destdir="${build.classes.test}" encoding="${build.encoding}" includes="**/**/*.java" debug="${debug}" fork="${fork}" optimize="${optimize}" source="${source}" deprecation="${deprecation}">
 			<src path="${src.java.test}" />
 			<classpath refid="classpath" />
 		</javac>
@@ -73,30 +73,27 @@
 			</fileset>
 		</copy>
 		<jar jarfile="${dist.jar.main}" basedir="${build.classes.main}" compress="true">
-           	<fileset dir="${src.resources}">
+			<fileset dir="${src.resources}">
 				<include name="**/*.*" />
 			</fileset>
-			 <manifest>
-                    <attribute name="Main-Class" value="ke.similarity.pim.main.Start" />
-            </manifest>
+			<manifest>
+				<attribute name="Main-Class" value="ke.similarity.pim.main.Start" />
+			</manifest>
 		</jar>
-	
-   		<!-- generate test.jar -->
-   		<jar jarfile="${dist.jar.test}" basedir="${build.classes.main}" compress="true"/>
+
+		<!-- generate test.jar -->
+		<jar jarfile="${dist.jar.test}" basedir="${build.classes.main}" compress="true" />
 	</target>
 
 	<target name="source" depends="init" description="zip source">
-    		<jar destfile="${build.dir}/similarity-src.zip">
+		<jar destfile="${build.dir}/similarity-src.zip">
 			<fileset dir="${basedir}">
-	        		<include name="src/**/*.*"/>
-				<include name="docs/**/*.*"/>
-				<include name=".classpath"/>
-				<include name=".project"/>
-				<include name="build.*"/>
-				<include name="start.py"/>
-	        	</fileset>
-    		</jar>	
-	</target>	
-	
+				<include name="src/**/*.*" />
+				<include name="docs/**/*.*" />
+				<include name="*.*" />
+			</fileset>
+		</jar>
+	</target>
+
 
 </project>
