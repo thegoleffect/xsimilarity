@@ -8,11 +8,8 @@ import java.util.Collection;
  * 一种新的Map，跟标准的Map不同，它的的Key可以有重复, 内部采用快速排序和二分查找,
  * 保持较少的变量，结构简单，可根据主键查找返回的结果是一个数组
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  * 
  * @param <T>
  * @param <V>

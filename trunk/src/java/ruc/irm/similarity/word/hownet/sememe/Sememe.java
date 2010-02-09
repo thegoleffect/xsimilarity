@@ -4,12 +4,8 @@ package ruc.irm.similarity.word.hownet.sememe;
  * 描述知网义原的基本对象, 出于性能考虑，把未用到的英文名称、定义等在加载时忽略, 更准确的做法是以[英文定义|中文定义]
  * 作为一个整理进行处理，不过绝大多数只根据中文定义就可以标识出来，因此忽略不计。
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class Sememe {
 	/** 义原编号 */

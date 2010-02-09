@@ -17,8 +17,9 @@ import ruc.irm.similarity.util.TraverseEvent;
 
 /**
  * 词林数据库
- * @author Gavin
- *
+ * 
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class CilinDb {
 	/** the logger */

@@ -4,7 +4,8 @@ package ruc.irm.similarity.sentence.editdistance;
 /**
  * 基于编辑距离的汉语句子相似度计算
  * 
- * @author 夏 天 
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class StandardEditDistance extends EditDistance {       
     /**

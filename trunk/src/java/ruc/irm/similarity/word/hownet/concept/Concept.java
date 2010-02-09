@@ -10,12 +10,8 @@ import ruc.irm.similarity.word.hownet.HownetMeta;
 /**
  * 知网的概念表示类 <br/>example和英文部分对于相似度的计算不起作用，考虑到内存开销， 在概念的表示中去掉了这部分数据的对应定义
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class Concept implements HownetMeta, Comparable<Concept> {
 	/** 中文概念名称 */

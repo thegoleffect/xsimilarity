@@ -5,8 +5,8 @@ import java.util.Collection;
 /**
  * 判断是否为空的工具类
  * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- *
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class BlankUtils {
 	/**

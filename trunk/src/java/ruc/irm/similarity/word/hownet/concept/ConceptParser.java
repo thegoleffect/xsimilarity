@@ -25,12 +25,8 @@ import ruc.irm.similarity.word.hownet.sememe.SememeParser;
  * 	<li>两个义原集合的运算方式支持均值方式或Fuzzy方式</li>
  * </ol>
  * 
- * <p>
- * Organization: Knowledge engeering laboratory, IRM, Renmin university of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  * 
  * @see ke.commons.similarity.Similariable
  */

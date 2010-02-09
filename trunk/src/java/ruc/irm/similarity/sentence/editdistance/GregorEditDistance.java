@@ -10,8 +10,9 @@ package ruc.irm.similarity.sentence.editdistance;
  * 直觉应该是2，即“什么是计算机病毒”首先变为“计算机病毒什么是”，再变为“计算机病毒是什么”，
  * 编辑代价为2，但实际上，当由“什么是计算机病毒”变为“计算机病毒什么是”后，由于"什么是"与“是什么”的替换代价只有0.2，
  * 因而不再进行交互，故总的编辑距离为1.2
- * @version <tt>$Revision: 1.9 $</tt>
- * @author <a href="mailto:xiatian@bit.edu.cn">Gavin XIA</a>. 
+ * 
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class GregorEditDistance extends EditDistance {        
     /** 块交换代价 */

@@ -3,12 +3,8 @@ package ruc.irm.similarity;
 /**
  * 可以计算相似度的接口
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public interface Similaritable {
 	/**
