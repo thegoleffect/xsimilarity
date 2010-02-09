@@ -15,12 +15,8 @@ import ruc.irm.similarity.util.TraverseEvent;
  * <br/>
  * 概念保存到数组中，没有保存到Map中，可以降低对内存空间的使用
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class ConceptDictTraverseEvent implements TraverseEvent<String> {
 	private List<Concept> conceptList = null;

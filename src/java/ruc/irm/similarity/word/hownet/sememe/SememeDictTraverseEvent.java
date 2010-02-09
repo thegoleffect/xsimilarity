@@ -16,12 +16,8 @@ import ruc.irm.similarity.util.TraverseEvent;
  * │ │ │ │<br/>
  * 等等 <br>
  * 
- * <p>
- * Organization: Knowledge engeering laboratory, IRM, Renmin university of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class SememeDictTraverseEvent implements TraverseEvent<String>{
 	/** 义原存放的列表, 按照顺序设置ID，存放到线性表中 */

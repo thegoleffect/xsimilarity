@@ -3,8 +3,8 @@ package ruc.irm.similarity.word.hownet;
 /**
  * Metadata for Hownet
  * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- *
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public interface HownetMeta {	
 	/** Algorithm of XIA Tian */

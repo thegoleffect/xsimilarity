@@ -9,7 +9,9 @@ import ruc.irm.similarity.sentence.SegmentProxy.Word;
 
 /**
  * 超级字符串，可以存放指定的数据类型
- * @author Gavin
+ * 
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  *
  * @param <T>
  */

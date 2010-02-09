@@ -10,10 +10,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
+import ruc.irm.similarity.phrase.PhraseSimilarityUI;
 import ruc.irm.similarity.sentence.SegmentProxy;
 import ruc.irm.similarity.sentence.SentenceSimilarityUI;
 import ruc.irm.similarity.word.WordSimlarityUI;
 
+/**
+ * 相似度计算软件包演示启动类
+ * 
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
+ */
 public class MainUI extends JFrame {
 
     private static final long serialVersionUID = 85744461208L;
@@ -40,6 +47,7 @@ public class MainUI extends JFrame {
         Container contentPane = this.getContentPane();
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.add("词语", WordSimlarityUI.createPanel());
+        tabbedPane.add("短语", PhraseSimilarityUI.createPanel());
         tabbedPane.add("句子", SentenceSimilarityUI.createPanel());
         //tabbedPane.add("文本", WordSimlarityUI.createPanel());
         tabbedPane.add("词法分析", SegmentProxy.createPanel());

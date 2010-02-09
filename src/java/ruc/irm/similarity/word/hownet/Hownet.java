@@ -16,12 +16,8 @@ import ruc.irm.similarity.word.hownet.sememe.SememeParser;
  * Hownet的主控制类, 通过知网的概念和义原及其关系计算汉语词语之间的相似度. 
  * 相似度的计算理论参考论文《汉语词语语义相似度计算研究》
  * 
- * <p>
- * Organization: Knowledge engeering laboratory, IRM, Renmin university of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  * 
  * @see ke.commons.similarity.Similariable
  */

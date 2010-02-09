@@ -17,12 +17,8 @@ import ruc.irm.similarity.word.hownet.HownetMeta;
  * 义原解析器, 包括义元数据的加载，义元的组织、索引、查询 以及义元的距离计算和相似度计算等.
  * 算法的核心思想请参看论文《汉语词语语义相似度计算研究》
  * 
- * <p>
- * Organization: Knowledge engeering laboratory, IRM, Renmin university of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  * 
  * @see ke.commons.similarity.Similariable
  */

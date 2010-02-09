@@ -15,12 +15,8 @@ import ruc.irm.similarity.word.hownet.sememe.SememeParser;
  * 概念解析器的实现,用于获取概念、计算概念的相似度等, 与原论文比较，加入了剪枝处理，当组合过多的时候，就自动停止后面的组合情况，
  * 保证运行速度
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class MyConceptParser extends ConceptParser{	
 	private static final int MAX_COMBINED_COUNT = 12;

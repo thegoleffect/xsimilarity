@@ -11,12 +11,8 @@ import ruc.irm.similarity.word.hownet.sememe.SememeParser;
 /**
  * 刘群老师的相似度计算方式，对概念解析的处理方式
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class LiuConceptParser extends ConceptParser{
 	

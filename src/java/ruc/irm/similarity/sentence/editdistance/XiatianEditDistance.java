@@ -4,8 +4,8 @@ package ruc.irm.similarity.sentence.editdistance;
 /**
  * 夏天提出的新的支持非相邻块交互的编辑距离算法
  * 
- * @version <tt>$Revision: 1.8 $</tt>
- * @author <a href="mailto:xiatian@bit.edu.cn">Gavin XIA</a>. 
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class XiatianEditDistance extends EditDistance {
     /** 块交换代价 */

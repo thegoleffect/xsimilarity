@@ -13,15 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- * https://substance.dev.java.net/docs/skins/toneddown.html
- * @author xiat
- *
- */
-public class PhraseSimlarityUI {
+public class PhraseSimilarityUI {
 
     /**
-     * 词语相似度的演示面板
+     * 短语相似度的演示面板
      * @return
      */
     public static JPanel createPanel(){

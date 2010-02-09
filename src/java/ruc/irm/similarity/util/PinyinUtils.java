@@ -12,12 +12,8 @@ import java.util.Set;
 /**
  * 拼音处理的工具，负责从拼音词典加载内容，根据汉字词语或汉字查找拼音
  * 
- * <p>
- * Organization: Knowledge Engeering Laboratory, IRM, Renmin University of China
- * </p>
- * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- * @version 1.0
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class PinyinUtils {
 	/** 拼音的Map词典, 一个汉字可能对应多个拼音, 它所有的拼音放到一个集合中 */

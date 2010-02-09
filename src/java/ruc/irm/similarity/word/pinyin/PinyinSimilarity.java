@@ -10,8 +10,8 @@ import ruc.irm.similarity.util.PinyinUtils;
 /**
  * 通过拼音计算两个词语是否相似，拼音的相似程度采用编辑距离算法，并进行归一化衡量
  * 
- * @author <a href="xiat@ruc.edu.cn">xiatian</a>
- *
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class PinyinSimilarity implements Similaritable {
 	
