@@ -1,6 +1,8 @@
 package ruc.irm.similarity;
 
 import java.awt.Container;
+import java.awt.Font;
+import java.util.Enumeration;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -9,6 +11,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 import ruc.irm.similarity.phrase.PhraseSimilarityUI;
 import ruc.irm.similarity.sentence.SegmentProxy;
@@ -23,48 +27,60 @@ import ruc.irm.similarity.word.WordSimlarityUI;
  */
 public class MainUI extends JFrame {
 
-    private static final long serialVersionUID = 85744461208L;
+	private static final long serialVersionUID = 85744461208L;
 
-    public MainUI() {
-        this.setTitle("相似度计算演示程序");
-        this.setSize(400, 600);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	public MainUI() {
+		this.setTitle("相似度计算演示程序");
+		this.setSize(420, 620);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        ////////////////////////////////////
-        //add menu
-        JMenuBar menuBar = new JMenuBar();
-        this.setJMenuBar(menuBar);
+		// //////////////////////////////////
+		// add menu
+		JMenuBar menuBar = new JMenuBar();
+		this.setJMenuBar(menuBar);
 
-        JMenu fileMenu = new JMenu("File");
-        menuBar.add(fileMenu);
-        fileMenu.add(new JMenuItem("Exit"));
+		JMenu fileMenu = new JMenu("File");
+		menuBar.add(fileMenu);
+		fileMenu.add(new JMenuItem("Exit"));
 
-        JMenu helpMenu = new JMenu("Help");
-        menuBar.add(helpMenu);
-        helpMenu.add(new JMenuItem("Help"));
-       
-        Container contentPane = this.getContentPane();
-        JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.add("词语", WordSimlarityUI.createPanel());
-        tabbedPane.add("短语", PhraseSimilarityUI.createPanel());
-        tabbedPane.add("句子", SentenceSimilarityUI.createPanel());
-        //tabbedPane.add("文本", WordSimlarityUI.createPanel());
-        tabbedPane.add("词法分析", SegmentProxy.createPanel());
-        JScrollPane scrollPane = new JScrollPane(tabbedPane);
-        contentPane.add(scrollPane);        
-    }    
-    
-    public static void main(String[] args) {
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        SwingUtilities.invokeLater(new Runnable() {
+		JMenu helpMenu = new JMenu("Help");
+		menuBar.add(helpMenu);
+		helpMenu.add(new JMenuItem("Help"));
 
-            public void run() {
-                MainUI w = new MainUI();
-                w.setVisible(true);
-            }
-        });
-    }
+		Container contentPane = this.getContentPane();
+		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane.add("词语", WordSimlarityUI.createPanel());
+		tabbedPane.add("短语", PhraseSimilarityUI.createPanel());
+		tabbedPane.add("句子", SentenceSimilarityUI.createPanel());
+		// tabbedPane.add("文本", WordSimlarityUI.createPanel());
+		tabbedPane.add("词法分析", SegmentProxy.createPanel());
+		JScrollPane scrollPane = new JScrollPane(tabbedPane);
+		contentPane.add(scrollPane);
+	}
 
+	public static void InitGlobalFont(Font font) {
+		FontUIResource fontRes = new FontUIResource(font);
+		for (Enumeration<Object> keys = UIManager.getDefaults().keys(); keys.hasMoreElements();) {
+			Object key = keys.nextElement();
+			Object value = UIManager.get(key);
+			if (value instanceof FontUIResource) {
+				UIManager.put(key, fontRes);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		//JFrame.setDefaultLookAndFeelDecorated(true);
+		//解决字体在Ubuntu中显示有乱码的问题，SimSun可以从Windows中拷贝到Ubuntu，双击安装即可
+		InitGlobalFont(new Font("SimSun", Font.TRUETYPE_FONT, 12));
+		SwingUtilities.invokeLater(new Runnable() {
+
+			public void run() {
+				MainUI w = new MainUI();
+				w.setVisible(true);
+			}
+		});
+	}
 
 }
