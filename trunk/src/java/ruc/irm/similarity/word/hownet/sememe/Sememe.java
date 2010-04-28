@@ -41,9 +41,9 @@ public class Sememe {
 		int pos = item.indexOf('|');
 		if (pos < 0) {
 			this.cnWord = item;
-			//this.enWord = item;
+			this.enWord = item;
 		} else {
-			//this.enWord = item.substring(0, pos);
+			this.enWord = item.substring(0, pos);
 
 			// 去掉"|"符号
 			String nextPart = item.substring(pos + 1);
@@ -52,7 +52,7 @@ public class Sememe {
 				this.cnWord = nextPart;
 			} else {
 				this.cnWord = nextPart.substring(0, pos);
-				//this.define = nextPart.substring(pos).trim();
+				this.define = nextPart.substring(pos).trim();
 			}
 		}
 	}
@@ -122,10 +122,12 @@ public class Sememe {
 		sb.append(parentId);
 		sb.append("; depth=");
 		sb.append(depth);
-		sb.append("; define=");
+		sb.append("; cnWord=");
 		sb.append(cnWord);
-		sb.append("|");
+		sb.append("; enWord=");
 		sb.append(enWord);
+		sb.append("; define=");
+		sb.append(define);
 		return sb.toString();
 	}
 
