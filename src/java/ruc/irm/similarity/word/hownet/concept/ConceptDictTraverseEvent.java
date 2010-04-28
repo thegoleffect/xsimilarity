@@ -82,7 +82,7 @@ public class ConceptDictTraverseEvent implements TraverseEvent<String> {
 			}
 		}
 		
-		conceptList.add(new Concept(word, pos, define));
+		conceptList.add(new TxtConcept(word, pos, define));
 		return true;
 	}
 		

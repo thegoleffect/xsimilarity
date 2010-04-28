@@ -1,7 +1,20 @@
 package ruc.irm.similarity.word.hownet.sememe;
 
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import ruc.irm.similarity.util.TraverseEvent;
 
@@ -35,11 +48,78 @@ public class SememeDictTraverseEvent implements TraverseEvent<String>{
 		return sememeList.toArray(new Sememe[sememeList.size()]);
 	}
 	
+	
+	private void processXML(Document document, Element root, int parentId, String fullParentId){
+		int position = 1;
+		for(int i=0; i<sememeList.size(); i++){
+			Sememe sememe = sememeList.get(i);
+			if(sememe.getParentId()==parentId && sememe.getId()!=parentId){
+				Element sememeNode = document.createElement("sememe");
+				String fullId = fullParentId + "-" + (position++);
+				sememeNode.setAttribute("id", fullId);				
+				sememeNode.setAttribute("cn", sememe.getCnWord());
+				sememeNode.setAttribute("en", sememe.getEnWord());
+				if(sememe.getDefine()!=null && !sememe.getDefine().equals("")){
+					sememeNode.setAttribute("define", sememe.getDefine());
+				}
+				root.appendChild(sememeNode);	
+				processXML(document, root, sememe.getId(), fullId);
+			}
+		}
+	}
+	
+	/**
+	 * 保存到XML文件中, 新版本的xsimilarity采用xml格式存储义原，其格式为
+	 * &lt;sememes>
+	 *   &lt;sememe cn="事件" en="event" id="1"/>
+	 *   &lt;sememe cn="静态" en="static" id="1-1"/>
+	 * ...
+	 * &lt;/sememes>
+	 * @param xmlFile
+	 * @throws Exception 
+	 */
+	public void saveToXML(String xmlFile) throws Exception{
+		DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance(); 
+		DocumentBuilder builder=factory.newDocumentBuilder(); 
+		Document document=builder.newDocument();
+		Element root=document.createElement("sememes"); 
+		document.appendChild(root); 
+		int position = 1;
+		for(Sememe sememe:sememeList){
+			if(sememe.getId()!=sememe.getParentId()){
+				continue;
+			}
+			
+			Element sememeNode = document.createElement("sememe");
+			String fullId = Integer.toString(position++);
+			
+			sememeNode.setAttribute("id", fullId);			
+			sememeNode.setAttribute("cn", sememe.getCnWord());
+			sememeNode.setAttribute("en", sememe.getEnWord());
+			if(sememe.getDefine()!=null && !sememe.getDefine().equals("")){
+				sememeNode.setAttribute("define", sememe.getDefine());
+			}
+			root.appendChild(sememeNode);			
+			processXML(document, root, sememe.getId(), fullId);
+		}
+		
+		TransformerFactory tf=TransformerFactory.newInstance(); 
+		Transformer transformer=tf.newTransformer(); 
+		DOMSource source=new DOMSource(document); 
+		transformer.setOutputProperty(OutputKeys.ENCODING,"utf8"); 
+		transformer.setOutputProperty(OutputKeys.INDENT,"yes"); 
+		PrintWriter pw=new PrintWriter(new FileOutputStream(xmlFile)); 
+		StreamResult result=new StreamResult(pw); 
+		transformer.transform(source,result); 
+	}
+	
 	/**
 	 * 解析当前义原信息文本行<br/>
-	 * 判断读入的一行文本是义元树中的第几层，读入的格式形如：<br> - entity|实体 <br> ├ thing|万物
-	 * [#time|时间,#space|空间] <br> │ ├ physical|物质 [!appearance|外观] <br> │ │ ├
-	 * animate|生物 [*alive|活着,!age|年龄,*die|死,*metabolize|代谢] <br>
+	 * 判断读入的一行文本是义元树中的第几层，读入的格式形如：<br>
+	 *  - entity|实体 <br>
+	 *   ├ thing|万物 [#time|时间,#space|空间] <br>
+	 *   │ ├ physical|物质 [!appearance|外观] <br>
+	 *   │ │ ├ animate|生物 [*alive|活着,!age|年龄,*die|死,*metabolize|代谢] <br>
 	 * 
 	 * @param item
 	 * @return 如果是义原，则info[0]返回层次深度(info[0]>=0); info[1]返回具体的义元内容起始位置；否则info[0]返回-1

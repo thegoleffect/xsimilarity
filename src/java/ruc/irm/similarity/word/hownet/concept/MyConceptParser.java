@@ -186,14 +186,14 @@ public class MyConceptParser extends ConceptParser{
 	public Concept autoCombineConcept(Concept head, Concept tail, Concept ref) {		
 		//一个为null，一个非null，直接返回非null的克隆新概念
 		if (tail == null && head!=null) {
-			return new Concept(head.getWord(), head.getPos(), head.getDefine());
+			return new TxtConcept(head.getWord(), head.getPos(), head.getDefine());
 		} else if (head == null && tail!=null) {
-			return new Concept(tail.getWord(), tail.getPos(), tail.getDefine());
+			return new TxtConcept(tail.getWord(), tail.getPos(), tail.getDefine());
 		}
 
 		//第二个概念不是实词，直接返回第一个概念
 		if (!tail.isSubstantive()) {
-			return new Concept(head.getWord() + tail.getWord(), head.getPos(), head.getDefine());
+			return new TxtConcept(head.getWord() + tail.getWord(), head.getPos(), head.getDefine());
 		}
 
 		// 如果没有参照概念、或者参照概念为虚词，则直接相加，即参照概念不再起作用
@@ -207,7 +207,7 @@ public class MyConceptParser extends ConceptParser{
 					define = define + "," +sememe;
 				}
 			}			
-			return new Concept(head.getWord() + tail.getWord(), tail.getPos(), define);
+			return new TxtConcept(head.getWord() + tail.getWord(), tail.getPos(), define);
 		} 
 
 		//正常处理：参照概念非空，并且是实词概念
@@ -266,7 +266,7 @@ public class MyConceptParser extends ConceptParser{
 			}			
 		}//end for
 
-		return new Concept(head.getWord() + tail.getWord(), tail.getPos(),define);		
+		return new TxtConcept(head.getWord() + tail.getWord(), tail.getPos(),define);		
 	}
 	
 	/**

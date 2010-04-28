@@ -78,10 +78,8 @@ public abstract class SememeParser implements HownetMeta, Similaritable {
 	    sememeMap = new FastSimpleMap<String, Integer>(keys, values);
 	    
 	    time = System.currentTimeMillis() - time;
-		LOG.info("sememe dictionary load completely. time elapsed: " + time);
+	    LOG.info("sememe dictionary load completely. time elapsed: " + time);
 	}
-
-	
 
 	/**
 	 * 根据汉语定义计算义元之间的距离,Integer.MAX_VALUE代表两个义元之间的距离为无穷大， 
