@@ -29,6 +29,7 @@ import ruc.irm.similarity.word.hownet.sememe.SememeParser;
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  * 
  * @see ke.commons.similarity.Similariable
+ * @deprecated
  */
 public abstract class ConceptParser implements HownetMeta, Similaritable{
 	/** the logger */

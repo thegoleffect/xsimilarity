@@ -18,6 +18,7 @@ import ruc.irm.similarity.phrase.PhraseSimilarityUI;
 import ruc.irm.similarity.sentence.SegmentProxy;
 import ruc.irm.similarity.sentence.SentenceSimilarityUI;
 import ruc.irm.similarity.word.WordSimlarityUI;
+import ruc.irm.similarity.word.hownet2.sememe.SememeTreeUI;
 
 /**
  * 相似度计算软件包演示启动类
@@ -55,6 +56,7 @@ public class MainUI extends JFrame {
 		tabbedPane.add("句子", SentenceSimilarityUI.createPanel());
 		// tabbedPane.add("文本", WordSimlarityUI.createPanel());
 		tabbedPane.add("词法分析", SegmentProxy.createPanel());
+		tabbedPane.add("义原树", SememeTreeUI.createPanel());
 		JScrollPane scrollPane = new JScrollPane(tabbedPane);
 		contentPane.add(scrollPane);
 	}
@@ -72,8 +74,8 @@ public class MainUI extends JFrame {
 
 	public static void main(String[] args) {
 		//JFrame.setDefaultLookAndFeelDecorated(true);
-		//解决字体在Ubuntu中显示有乱码的问题，SimSun可以从Windows中拷贝到Ubuntu，双击安装即可
-		InitGlobalFont(new Font("SimSun", Font.TRUETYPE_FONT, 12));
+		//解决字体在Ubuntu中显示有乱码的问题
+		InitGlobalFont(new Font("WenQuanyi Micro Hei", Font.TRUETYPE_FONT, 12));
 		SwingUtilities.invokeLater(new Runnable() {
 
 			public void run() {

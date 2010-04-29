@@ -10,6 +10,7 @@ import java.io.IOException;
  * 
  * @author <a href="xiat@ruc.edu.cn">xiatian</a>
  * @version 1.0
+ * @deprecated
  */
 public class LiuqunSememeParser extends SememeParser {
 		

@@ -7,10 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import ruc.irm.similarity.Similaritable;
-import ruc.irm.similarity.word.hownet.concept.ConceptParser;
-import ruc.irm.similarity.word.hownet.concept.MyConceptParser;
-import ruc.irm.similarity.word.hownet.sememe.MySememeParser;
-import ruc.irm.similarity.word.hownet.sememe.SememeParser;
+import ruc.irm.similarity.word.hownet2.concept.ConceptParser;
+import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
+import ruc.irm.similarity.word.hownet2.sememe.XiaSememeParser;
+import ruc.irm.similarity.word.hownet2.sememe.BaseSememeParser;
 
 /**
  * Hownet的主控制类, 通过知网的概念和义原及其关系计算汉语词语之间的相似度. 
@@ -31,8 +31,8 @@ public class Hownet implements Similaritable{
 	
 	private Hownet(){
 		try {
-			SememeParser sememeParser = new MySememeParser();
-			conceptParser = new MyConceptParser(sememeParser);
+			BaseSememeParser sememeParser = new XiaSememeParser();
+			conceptParser = new XiaConceptParser(sememeParser);
 		} catch (IOException e) {			
 			e.printStackTrace();
 			LOG.error(e);

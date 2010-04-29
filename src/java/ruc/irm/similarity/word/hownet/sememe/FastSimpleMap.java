@@ -13,6 +13,7 @@ import java.util.Collection;
  * 
  * @param <T>
  * @param <V>
+ * @deprecated
  */
 public class FastSimpleMap<K extends Comparable<K>, V> {
 	private K[] keys;

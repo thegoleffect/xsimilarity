@@ -9,6 +9,7 @@ import java.util.LinkedList;
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  *
  * @param <T>
+ * @deprecated
  */
 @SuppressWarnings("serial")
 public class ConceptLinkedList extends LinkedList<Concept> {

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author xiatian
+ * @deprecated
+ */
 public class TxtConcept extends Concept {
 
 	public TxtConcept(String word, String pos, String def) {		
