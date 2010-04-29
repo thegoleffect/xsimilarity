@@ -6,6 +6,7 @@ package ruc.irm.similarity.word.hownet.sememe;
  * 
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
+ * @deprecated
  */
 public class Sememe {
 	/** 义原编号 */
