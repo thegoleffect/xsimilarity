@@ -1,5 +1,7 @@
 package ruc.irm.similarity.word.hownet2.concept;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -56,13 +58,29 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 		this.sememeParser = sememeParser;
 		synchronized (this) {
 			if(CONCEPTS == null){				
-				CONCEPTS = HashMultimap.create();
-				String conceptFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/concept.xml.gz";
-				InputStream input = this.getClass().getClassLoader().getResourceAsStream(conceptFile);
-				input = new GZIPInputStream(input);
-				load(input);
+				firstLoad();
 			}
 		}		
+	}
+	
+	/**
+	 * 加载用户自定义的概念词典文件
+	 * @param xmlFile
+	 * @throws IOException
+	 */
+	public static void load(File xmlFile) throws IOException{
+		if(CONCEPTS == null){				
+			firstLoad();
+		}
+		load(new FileInputStream(xmlFile));
+	}
+	
+	private static void firstLoad() throws IOException{
+		CONCEPTS = HashMultimap.create();
+		String conceptFile = BaseConceptParser.class.getPackage().getName().replaceAll("\\.", "/") + "/concept.xml.gz";
+		InputStream input = BaseConceptParser.class.getClassLoader().getResourceAsStream(conceptFile);
+		input = new GZIPInputStream(input);
+		load(input);
 	}
 	
 	/**
@@ -70,7 +88,7 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 	 * 
 	 * @throws IOException
 	 */
-	public void load(InputStream input) throws IOException {
+	private static void load(InputStream input) throws IOException {
 		System.out.print("loading concepts...");
 		long time = System.currentTimeMillis();
 		try {
