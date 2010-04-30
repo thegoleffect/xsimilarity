@@ -72,7 +72,7 @@ public class SememeTreeUI extends JFrame {
 		InputStream input = SememeTreeUI.class.getClassLoader().getResourceAsStream(sememeFile);
 		input = new GZIPInputStream(input);
 
-		System.out.println("loading sememe dictionary...");
+		System.out.println("[" + SememeTreeUI.class.getSimpleName()+ "]loading sememes into sememe tree...");
 		long time = System.currentTimeMillis();
 		try {
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
@@ -104,7 +104,8 @@ public class SememeTreeUI extends JFrame {
 		} catch (Exception e) {
 			throw new IOException(e);
 		}
-		System.out.println("sememe dictionary load completely. time elapsed: " + time);
+		time = System.currentTimeMillis() - time;
+		System.out.println("complete. time elapsed: " + (time/1000) + "s");
 		
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode("知网义原层次关系树");
 		createNodes(sememes, top, "root");

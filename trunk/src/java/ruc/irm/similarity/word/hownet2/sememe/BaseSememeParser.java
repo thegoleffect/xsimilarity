@@ -34,11 +34,16 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 	protected Log LOG = LogFactory.getLog(this.getClass());
 
 	/** 所有的义原都存放到一个MultiMap, Key为Sememe的中文定义, Value为义原的Id */
-	protected Multimap<String, String> SEMEMES = ArrayListMultimap.create();
+	protected static Multimap<String, String> SEMEMES = null;
 
 	public BaseSememeParser() throws IOException {
+		if(SEMEMES != null){
+			return;
+		}
+		
+		SEMEMES = ArrayListMultimap.create();
+		
 		String sememeFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/sememe.xml.gz";
-
 		InputStream input = this.getClass().getClassLoader().getResourceAsStream(sememeFile);
 		input = new GZIPInputStream(input);
 		load(input);
@@ -50,12 +55,13 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 	 * @throws IOException
 	 */
 	public void load(InputStream input) throws IOException {
-		LOG.info("loading sememe dictionary...");
+		System.out.print("loading sememes...");
 		long time = System.currentTimeMillis();
 		try {
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 			XMLEventReader xmlEventReader = inputFactory.createXMLEventReader(input);
 
+			int count = 0;
 			while (xmlEventReader.hasNext()) {
 				XMLEvent event = xmlEventReader.nextEvent();
 
@@ -65,6 +71,10 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 						String cnWord = startElement.getAttributeByName(QName.valueOf("cn")).getValue();
 						String id = startElement.getAttributeByName(QName.valueOf("id")).getValue();
 						SEMEMES.put(cnWord, id);
+						count++;
+						if(count%100==0){
+							System.out.print(".");
+						}
 					}
 				}
 			}
@@ -72,7 +82,8 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 		} catch (Exception e) {
 			throw new IOException(e);
 		}
-		LOG.info("sememe dictionary load completely. time elapsed: " + time);
+		time = System.currentTimeMillis()-time;
+		System.out.println("\ncomplete!. time elapsed: " + (time/1000) + "s");	
 	}
 
 }
