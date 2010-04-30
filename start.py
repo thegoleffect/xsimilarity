@@ -2,10 +2,11 @@
 import os, sys, re
 
 #home to store project
-HOME = '../'
+HOME = './'
 
 #loop directory and get all libraries
 def getlibraries(HOME):
+	jars = ''
         split_char = ':'
         if os.name=='nt':
 	        split_char = ';'
@@ -15,7 +16,7 @@ def getlibraries(HOME):
         jars = jars + split_char + home + '/target/classes/test';
         jars = jars + split_char + home + '/src/main/resources';
         jars = jars + split_char + home + '/src/main/java';
-        libdir = home + "/../ke-dependence/lib";
+        libdir = home + "/lib";
 
         for jar in os.listdir(libdir):
             if(jar==".svn"):continue
@@ -38,6 +39,7 @@ command = 'java -Xmx256M -cp "' + libpath + '" '
 
 if(len(sys.argv)==1):
 	print "useage:./start.py runclass"
+	command = command + ' ruc.irm.similarity.MainUI'
 else:
     args = sys.argv
     for i in range(1,len(args)):
