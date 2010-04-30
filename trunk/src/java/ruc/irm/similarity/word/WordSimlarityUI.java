@@ -138,9 +138,11 @@ public class WordSimlarityUI extends JFrame {
 				text = text + "\n词林:" + Cilin.getInstance().getSimilarity(word1, word2);
 				text = text + "\n刘群:" + LiuConceptParser.getInstance().getSimilarity(word1, word2);
 				text = text + "\n夏天:" + XiaConceptParser.getInstance().getSimilarity(word1, word2);
-				text = text + "\n字面:" + new CharBasedSimilarity().getSimilarity(word1, word2);
-				// text = text + "\n\n" + result.getText();
+				text = text + "\n字面:" + new CharBasedSimilarity().getSimilarity(word1, word2);				
+				text += "\n__________________________________\n";
+				text += result.getText();
 				result.setText(text);
+				result.setCaretPosition(0);
 			}
 
 		});
@@ -170,6 +172,7 @@ public class WordSimlarityUI extends JFrame {
 				text += "\n__________________________________\n";
 				text += result.getText();
 				result.setText(text);
+				result.setCaretPosition(0);
 			}
 
 		});
@@ -181,7 +184,7 @@ public class WordSimlarityUI extends JFrame {
 				text += "\n__________________________________\n";
 				text += result.getText();
 				result.setText(text);
-
+				result.setCaretPosition(0);
 			}
 
 		});
@@ -201,10 +204,10 @@ public class WordSimlarityUI extends JFrame {
 					i++;
 				}
 
-				// text += "__________________________________\n";
-				// text += result.getText();
+				text += "__________________________________\n";
+				text += result.getText();
 				result.setText(text);
-
+				result.setCaretPosition(0);
 			}
 
 		});
