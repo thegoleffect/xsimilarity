@@ -5,10 +5,13 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -23,6 +26,7 @@ import javax.swing.SwingUtilities;
 
 import ruc.irm.similarity.word.cilin.Cilin;
 import ruc.irm.similarity.word.cilin.CilinDb;
+import ruc.irm.similarity.word.hownet2.concept.BaseConceptParser;
 import ruc.irm.similarity.word.hownet2.concept.Concept;
 import ruc.irm.similarity.word.hownet2.concept.LiuConceptParser;
 import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
@@ -85,7 +89,7 @@ public class WordSimlarityUI extends JFrame {
 	 */
 	public static JPanel createPanel() {
 		// 声明总的大面板, fullPanel包括一个NorthPanel和一个centerPanel
-		JPanel fullPanel = new JPanel();
+		final JPanel fullPanel = new JPanel();
 		fullPanel.setLayout(new BorderLayout());
 
 		JPanel northPanel = new JPanel();
@@ -125,9 +129,44 @@ public class WordSimlarityUI extends JFrame {
 		mainPanel.add(linePanel);
 
 		linePanel = new JPanel();
+		JButton loadButton = new JButton("加载自定义概念文件");
+		linePanel.add(loadButton);
 		JButton goButton = new JButton("计算词语相似度");
 		linePanel.add(goButton);
 		mainPanel.add(linePanel);
+		loadButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("[Help]概念词典格式举例：\n");
+				sb.append("<?xml version=\"1.0\"?>\n");
+				sb.append("<concepts>\n");
+				sb.append("  <!--\n");
+				sb.append("  <c w=\"汉语词语\" p=\"词性，取值为：V|N|ADJ|NUM|PREP等\" d=\"对应的义原形式的定义\"/>\n");
+				sb.append("  -->\n");
+				sb.append("  <c w=\"三聚氰胺\" p=\"N\" d=\"material|材料,#drinks|饮品\"/>\n");
+				sb.append("  <c w=\"山寨\" p=\"V\" d=\"pretend|假装,content=RegardAs|当作\"/>\n");
+				sb.append("</concepts>");
+				result.setText(sb.toString());
+				result.setCaretPosition(0);
+				
+				JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("选择要打开的概念文件");
+        chooser.showOpenDialog(fullPanel);
+        File choosedFile = chooser.getSelectedFile();
+        if (choosedFile != null) {
+          try {
+	          BaseConceptParser.load(choosedFile);
+	          result.setText("加载完毕.\n------------------------------\n" + result.getText());
+          } catch (IOException e1) {
+          	result.setText(e1.getMessage() + "\n------------------------------\n" + result.getText());
+    				result.setCaretPosition(0);
+          }
+        }
+			}
+
+		});
 		goButton.addActionListener(new ActionListener() {
 
 			@Override
