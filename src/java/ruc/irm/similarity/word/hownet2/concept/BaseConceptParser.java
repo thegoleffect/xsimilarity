@@ -19,7 +19,7 @@ import ruc.irm.similarity.util.BlankUtils;
 import ruc.irm.similarity.word.hownet.HownetMeta;
 import ruc.irm.similarity.word.hownet2.sememe.BaseSememeParser;
 
-import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 /**
@@ -56,7 +56,7 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 		this.sememeParser = sememeParser;
 		synchronized (this) {
 			if(CONCEPTS == null){				
-				CONCEPTS = ArrayListMultimap.create();
+				CONCEPTS = HashMultimap.create();
 				String conceptFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/concept.xml.gz";
 				InputStream input = this.getClass().getClassLoader().getResourceAsStream(conceptFile);
 				input = new GZIPInputStream(input);
@@ -66,7 +66,7 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 	}
 	
 	/**
-	 * 从文件中加载概念知识，并自定进行排序
+	 * 从XML格式文件输入流中加载概念知识。用户自定义的领域概念，也可以通过该方式加载到词典中
 	 * 
 	 * @throws IOException
 	 */

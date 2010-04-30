@@ -13,7 +13,7 @@ import ruc.irm.similarity.word.hownet.HownetMeta;
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
-public class Concept implements HownetMeta, Comparable<Concept> {
+public class Concept implements HownetMeta {
 	/** 中文概念名称 */
 	protected String word;
 	/** 词性: Part of Speech */
@@ -217,25 +217,20 @@ public class Concept implements HownetMeta, Comparable<Concept> {
 		}
 		return "普通概念";
 	}	
+
+	@Override
+	public int hashCode(){
+		return define==null?word.hashCode():define.hashCode();
+	}
 	
-	/**
-	 * 按照概念的名称进行比较
-	 */
-	public int compareTo(Concept o) {
-		return word.compareTo(o.word);
+	@Override
+	public boolean equals(Object anObject){
+		if(anObject instanceof Concept){
+			Concept c = (Concept)anObject;
+			return word.equals(c.word) && define.equals(c.define);
+		}else{
+			return false;
+		}
 	}
 
-	//////////////////////////////////////////////
-	/**
-	 * 方便在parse中比较概念词语加入的方法
-	 * @param another
-	 * @return
-	 */
-	public int compareTo(String another){
-		return word.compareTo(another);
-	}
-	
-	public boolean equals(String another){
-		return word.equals(another);
-	}
 }
