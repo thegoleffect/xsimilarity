@@ -16,7 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import ruc.irm.similarity.Similaritable;
 import ruc.irm.similarity.word.hownet.HownetMeta;
 
-import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 /**
@@ -41,7 +41,7 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 			return;
 		}
 		
-		SEMEMES = ArrayListMultimap.create();
+		SEMEMES = HashMultimap.create();
 		
 		String sememeFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/sememe.xml.gz";
 		InputStream input = this.getClass().getClassLoader().getResourceAsStream(sememeFile);
