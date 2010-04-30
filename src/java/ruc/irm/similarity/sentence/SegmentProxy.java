@@ -20,8 +20,22 @@ import org.ictclas4j.bean.SegResult;
 import org.ictclas4j.segment.Segment;
 import org.ictclas4j.utility.POSTag;
 
+/**
+ * 对词法分析程序的封装代理，目前内部封装了对Ictclas4j（夏天改进版）的调用<br/>
+ * 为方便演示程序快速启动，对Segment的调用采用了单例模式，实现需要时的延迟加载。
+ * 
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
+ */
 public class SegmentProxy {
-	static Segment segment = new Segment(1);
+	static Segment seg = null;
+	
+	private static Segment getSegment(){
+		if(null==seg){
+			seg = new Segment(1);
+		}
+		return seg;
+	}
 	
 	public static class Word {
 		/** 词语内容 */
@@ -49,7 +63,7 @@ public class SegmentProxy {
 	
 	public static List<Word> segment(String sentence){
 		List<Word> results = new ArrayList<Word>();
-		SegResult segResult = segment.split(sentence);
+		SegResult segResult = getSegment().split(sentence);
 		for(SegNode segNode: segResult.getSegNodes()){
 			if (segNode.getPos() != POSTag.SEN_BEGIN && segNode.getPos() != POSTag.SEN_END) {
 				results.add(new Word(segNode.getSrcWord(), segNode.getPos()));
@@ -59,7 +73,7 @@ public class SegmentProxy {
 	}
 	
 	public static String getSegmentedString(String sentence){
-		SegResult segResult = segment.split(sentence);
+		SegResult segResult = getSegment().split(sentence);
 		return segResult.getFinalResult();
 	}
 	
@@ -106,7 +120,7 @@ public class SegmentProxy {
 				String sentence = senField.getText();
 				String text = "[" + sentence + "]的词法分析结果为:" ;
 				
-				SegResult segResult = segment.split(sentence);
+				SegResult segResult = getSegment().split(sentence);
 				text = text + "\n" + segResult.getFinalResult();
 				text = text + "\n________________________________\n" + result.getText();
      			result.setText(text);
