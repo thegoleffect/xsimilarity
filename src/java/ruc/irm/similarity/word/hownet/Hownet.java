@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import ruc.irm.similarity.Similaritable;
-import ruc.irm.similarity.word.hownet2.concept.ConceptParser;
+import ruc.irm.similarity.word.hownet2.concept.BaseConceptParser;
 import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
 import ruc.irm.similarity.word.hownet2.sememe.XiaSememeParser;
 import ruc.irm.similarity.word.hownet2.sememe.BaseSememeParser;
@@ -27,7 +27,7 @@ public class Hownet implements Similaritable{
 	/** 知网的单例 */
 	private static Hownet instance = null;
 	
-	private ConceptParser conceptParser = null;
+	private BaseConceptParser conceptParser = null;
 	
 	private Hownet(){
 		try {
@@ -55,7 +55,7 @@ public class Hownet implements Similaritable{
 	 * 获取概念解析器
 	 * @return
 	 */
-	public ConceptParser getConceptParser(){
+	public BaseConceptParser getConceptParser(){
 		return conceptParser;
 	}
 		
