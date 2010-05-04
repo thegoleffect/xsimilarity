@@ -32,7 +32,7 @@ public class MainUI extends JFrame {
 
 	public MainUI() {
 		this.setTitle("相似度计算演示程序");
-		this.setSize(420, 620);
+		this.setSize(420, 700);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -59,6 +59,9 @@ public class MainUI extends JFrame {
 		tabbedPane.add("义原树", SememeTreeUI.createPanel());
 		JScrollPane scrollPane = new JScrollPane(tabbedPane);
 		contentPane.add(scrollPane);
+		
+		this.pack();
+		setExtendedState(MAXIMIZED_BOTH);
 	}
 
 	public static void InitGlobalFont(Font font) {
