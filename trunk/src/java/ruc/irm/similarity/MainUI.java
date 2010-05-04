@@ -17,6 +17,7 @@ import javax.swing.plaf.FontUIResource;
 import ruc.irm.similarity.phrase.PhraseSimilarityUI;
 import ruc.irm.similarity.sentence.SegmentProxy;
 import ruc.irm.similarity.sentence.SentenceSimilarityUI;
+import ruc.irm.similarity.util.About;
 import ruc.irm.similarity.word.WordSimlarityUI;
 import ruc.irm.similarity.word.hownet2.sememe.SememeTreeUI;
 
@@ -57,6 +58,7 @@ public class MainUI extends JFrame {
 		// tabbedPane.add("文本", WordSimlarityUI.createPanel());
 		tabbedPane.add("词法分析", SegmentProxy.createPanel());
 		tabbedPane.add("义原树", SememeTreeUI.createPanel());
+		tabbedPane.add("关于", About.createPanel());
 		JScrollPane scrollPane = new JScrollPane(tabbedPane);
 		contentPane.add(scrollPane);
 		
