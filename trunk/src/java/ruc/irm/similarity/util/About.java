@@ -10,6 +10,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.text.StyledEditorKit;
 
 /**
  * 关于xsimilarity项目的说明信息
@@ -25,6 +26,8 @@ public class About extends JFrame {
 		mainPanel.setLayout(new BorderLayout());
 		JEditorPane editorPane = new JEditorPane();
 		editorPane.setEditable(false); 
+		//让长文本自动换行
+		editorPane.setEditorKit(new StyledEditorKit());
 		editorPane.setContentType("text/html");		
 		try {
 			URLClassLoader urlLoader = (URLClassLoader)About.class.getClassLoader();
