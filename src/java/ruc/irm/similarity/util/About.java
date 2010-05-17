@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.text.StyledEditorKit;
 
 /**
@@ -24,10 +24,10 @@ public class About extends JFrame {
 	public static JPanel createPanel() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
-		JEditorPane editorPane = new JEditorPane();
+		JTextPane editorPane = new JTextPane();
 		editorPane.setEditable(false); 
 		//让长文本自动换行
-		editorPane.setEditorKit(new StyledEditorKit());
+		editorPane.setEditorKit(new StyledEditorKit());	
 		editorPane.setContentType("text/html");		
 		try {
 			URLClassLoader urlLoader = (URLClassLoader)About.class.getClassLoader();
