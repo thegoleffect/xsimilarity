@@ -23,12 +23,12 @@ import com.google.common.collect.Multimap;
  * 义原解析器基类，所有义原存储在xml文件中（当前package中的sememe.xml.tar.gz文件）。<br/>
  * 算法的核心思想请参看论文《汉语词语语义相似度计算研究》或《中文信息相似度计算理论与方法》一书第三章<br/>
  * 
- * 为提高运算速度，义原的加载方式做了调整，只把义原的汉语定义和对应的Id加入到MultiMap对象中，并通过义原的层次化Id计算义原之间的相似度。<br/
+ * 为提高运算速度，义原的加载方式做了调整，只把义原的汉语定义和对应的Id加入到MultiMap对象中，并通过义原的层次化Id计算义原之间的相似度。<br/>
  * 
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  * 
- * @see ke.commons.similarity.Similariable
+ * @see {@link ke.commons.similarity.Similariable}
  */
 public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 	protected Log LOG = LogFactory.getLog(this.getClass());
@@ -37,12 +37,12 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 	protected static Multimap<String, String> SEMEMES = null;
 
 	public BaseSememeParser() throws IOException {
-		if(SEMEMES != null){
+		if (SEMEMES != null) {
 			return;
 		}
-		
+
 		SEMEMES = HashMultimap.create();
-		
+
 		String sememeFile = getClass().getPackage().getName().replaceAll("\\.", "/") + "/sememe.xml.gz";
 		InputStream input = this.getClass().getClassLoader().getResourceAsStream(sememeFile);
 		input = new GZIPInputStream(input);
@@ -72,7 +72,7 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 						String id = startElement.getAttributeByName(QName.valueOf("id")).getValue();
 						SEMEMES.put(cnWord, id);
 						count++;
-						if(count%100==0){
+						if (count % 100 == 0) {
 							System.out.print(".");
 						}
 					}
@@ -82,8 +82,18 @@ public abstract class BaseSememeParser implements HownetMeta, Similaritable {
 		} catch (Exception e) {
 			throw new IOException(e);
 		}
-		time = System.currentTimeMillis()-time;
-		System.out.println("\ncomplete!. time elapsed: " + (time/1000) + "s");	
+		time = System.currentTimeMillis() - time;
+		System.out.println("\ncomplete!. time elapsed: " + (time / 1000) + "s");
 	}
 
+	/**
+	 * 计算两个义原之间的关联度
+	 * 
+	 * @param sememeName1
+	 * @param sememeName2
+	 * @return
+	 */
+	public double getAssociation(String sememeName1, String sememeName2) {
+		return 0.0;
+	}
 }
