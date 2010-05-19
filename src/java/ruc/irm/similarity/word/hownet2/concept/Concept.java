@@ -1,7 +1,9 @@
 package ruc.irm.similarity.word.hownet2.concept;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import ruc.irm.similarity.word.hownet.HownetMeta;
@@ -137,6 +139,29 @@ public class Concept implements HownetMeta {
 	 */
 	public String[] getSymbolSememes() {
 		return symbolSememes;
+	}
+	
+	public Set<String> getAllSememeNames(){
+	    Set<String> names = new HashSet<String>();
+        
+        //加入主义原
+        names.add(getMainSememe());
+        
+        //加入关系义原
+        for(String item:getRelationSememes()){
+            names.add(item.substring(item.indexOf("=") + 1));
+        }               
+
+        //加入符号义原
+        for(String item:getSymbolSememes()){
+            names.add(item.substring(1));
+        }
+        
+        //加入其他义原集合
+        for(String item:getSecondSememes()){
+            names.add(item);
+        }
+        return names;
 	}
 
 	@Override

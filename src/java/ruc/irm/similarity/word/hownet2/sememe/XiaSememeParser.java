@@ -42,7 +42,7 @@ public class XiaSememeParser extends BaseSememeParser {
 	 * @param key2
 	 * @return
 	 */
-	double getMaxSimilarity(String sememeName1, String sememeName2) {
+	public double getMaxSimilarity(String sememeName1, String sememeName2) {
 		double maxValue = 0.0;
 
 		// 如果两个字符串相等，直接返回距离为0
@@ -53,7 +53,7 @@ public class XiaSememeParser extends BaseSememeParser {
 		Collection<String> sememeIds1 = SEMEMES.get(sememeName1);
 		Collection<String> sememeIds2 = SEMEMES.get(sememeName2);
 		
-		// 如果sememe1或者sememe2不是义元,则返回无穷大
+		// 如果sememe1或者sememe2不是义元,则返回0
 		if (sememeIds1.size() == 0 || sememeIds1.size() == 0) {
 			return 0.0;
 		}
