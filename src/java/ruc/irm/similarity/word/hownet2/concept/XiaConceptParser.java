@@ -48,6 +48,15 @@ public class XiaConceptParser extends BaseConceptParser{
 		return beta1*sim_v1+beta2*sim_v1*sim_v2+beta3*sim_v1*sim_v3+beta4*sim_v1*sim_v4;
 	}
 	
+	@Override
+	public Collection<Concept> getConcepts(String key) {
+	    Collection<Concept> concepts = super.getConcepts(key);
+	    if(BlankUtils.isBlank(concepts)){
+	        concepts = autoCombineConcepts(key, null);
+	    }
+	    return concepts;
+    }
+	
 	/**
 	 * 获取两个词语的相似度，如果一个词语对应多个概念，则返回相似度最大的一对
 	 * 
@@ -64,8 +73,8 @@ public class XiaConceptParser extends BaseConceptParser{
 			return 1.0;
 		}
 
-		Collection<Concept> concepts1 = getConcepts(word1);
-		Collection<Concept> concepts2 = getConcepts(word2);
+		Collection<Concept> concepts1 = super.getConcepts(word1);
+		Collection<Concept> concepts2 = super.getConcepts(word2);
 		
 		//如果是blank，则说明是未登录词, 需要计算组合概念
 		if(BlankUtils.isBlank(concepts1) && !BlankUtils.isBlank(concepts2)){
@@ -110,7 +119,7 @@ public class XiaConceptParser extends BaseConceptParser{
 		String word = oov_word;
 		while(word!=null && !word.equals("")){
 			String token = word;
-			while(token.length()>1 && BlankUtils.isBlank(getConcepts(token))){
+			while(token.length()>1 && BlankUtils.isBlank(super.getConcepts(token))){
 				token = token.substring(1);
 			}
 			results.add(token);
@@ -136,7 +145,7 @@ public class XiaConceptParser extends BaseConceptParser{
 		}
 		
 		for(String concept_word:segmentOOV(oov_word)){
-			Collection<Concept> concepts = getConcepts(concept_word);
+			Collection<Concept> concepts = super.getConcepts(concept_word);
 			if(oovConcepts.size()==0){
 				oovConcepts.addAll(concepts);				
 				continue;

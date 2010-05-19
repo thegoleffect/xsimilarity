@@ -27,6 +27,35 @@ import com.google.common.collect.Multimap;
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class Training {
+    
+    void test(boolean testPositive) throws IOException{
+        WordTendency tendency = new HownetWordTendency();
+        File f = new File("./dict/sentiment/负面情感词语（中文）.txt");
+        if(testPositive){
+            f = new File("./dict/sentiment/正面情感词语（中文）.txt");
+        }
+        String encoding = "utf-8";
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(f),    encoding));
+        String line;
+        int wordCount = 0;
+        int correctCount = 0;
+        while ((line = in.readLine()) != null) {
+            if(line.length()>5) continue;
+            wordCount++;
+            
+            double value =tendency.getTendency(line.trim());
+            if(value>0 && testPositive){
+                 correctCount++;                
+            }else if(value<0 && !testPositive){
+                correctCount++;                
+            }else{
+                System.out.println("error:" + line + "\t value:" + value);
+            }
+        }
+        System.out.println("correct:" + correctCount);
+        System.out.println("total:" + wordCount);
+        System.out.println("ratio:" + correctCount*1.0/wordCount);
+    }
 	
 	/**
 	 * 该方法用于统计知网提供的情感词集合所涉及的义原以及出现频度
@@ -116,6 +145,12 @@ public class Training {
 	}
 
     public static void main(String[] args) throws IOException {
-        new Training().countSentimentDistribution();
+        Training training = new Training();
+//        training.countSentimentDistribution();
+        System.out.println("test positive:");
+        training.test(true);
+        
+        System.out.println("test negative:");
+        training.test(false);
     }
 }
