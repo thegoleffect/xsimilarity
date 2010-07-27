@@ -14,6 +14,7 @@ public class XiatianEditDistance2 extends EditDistance {
     private SuperString<? extends EditUnit> S,T;
     private double[][][][] QArray;
     
+    @SuppressWarnings("unchecked")
     public double getEditDistance(SuperString<? extends EditUnit> S1, SuperString<? extends EditUnit> T1){
     	Object[] array = Split.split(S1, T1);
     	this.S = (SuperString<? extends EditUnit>)array[0];

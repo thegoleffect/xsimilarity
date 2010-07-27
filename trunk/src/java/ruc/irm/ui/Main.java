@@ -1,4 +1,4 @@
-package ruc.irm.similarity;
+package ruc.irm.ui;
 
 import java.awt.Container;
 import java.awt.Font;
@@ -14,13 +14,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-import ruc.irm.similarity.phrase.PhraseSimilarityUI;
 import ruc.irm.similarity.sentence.SegmentProxy;
-import ruc.irm.similarity.sentence.SentenceSimilarityUI;
 import ruc.irm.similarity.util.About;
-import ruc.irm.similarity.word.WordSimlarityUI;
 import ruc.irm.similarity.word.hownet2.sememe.SememeTreeUI;
-import ruc.irm.tendency.word.TendencyUI;
 
 /**
  * 相似度计算软件包演示启动类
@@ -28,11 +24,11 @@ import ruc.irm.tendency.word.TendencyUI;
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
-public class MainUI extends JFrame {
+public class Main extends JFrame {
 
 	private static final long serialVersionUID = 85744461208L;
 
-	public MainUI() {
+	public Main() {
 		this.setTitle("相似度计算演示程序");
 		this.setSize(420, 700);
 		this.setLocationRelativeTo(null);
@@ -86,7 +82,7 @@ public class MainUI extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			public void run() {
-				MainUI w = new MainUI();
+				Main w = new Main();
 				w.setVisible(true);
 			}
 		});

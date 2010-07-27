@@ -147,7 +147,7 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 	 * @return
 	 */
 	public boolean isConcept(String word){
-		return !BlankUtils.isBlank(getConcepts(word));
+		return !BlankUtils.isBlank(CONCEPTS.get(word));
 	}
 	
 	/**

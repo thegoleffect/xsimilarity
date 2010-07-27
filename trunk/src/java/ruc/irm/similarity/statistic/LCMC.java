@@ -2,21 +2,15 @@ package ruc.irm.similarity.statistic;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.events.Characters;
-import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import ruc.irm.similarity.word.hownet.concept.MyConceptParser;
+import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
+
 
 
 public class LCMC {
@@ -36,7 +30,7 @@ public class LCMC {
 				if(startElement.getName().toString().equals("w")){
 					String word = xmlEventReader.getElementText();
 					totalCount++;
-					if(MyConceptParser.getInstance().isConcept(word)){
+					if(XiaConceptParser.getInstance().isConcept(word)){
 						conceptCount++;
 					}
 				}					

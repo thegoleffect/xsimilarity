@@ -1,4 +1,4 @@
-package ruc.irm.tendency.word;
+package ruc.irm.ui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import ruc.irm.tendency.word.HownetWordTendency;
 
 /**
  * 测试词语倾向性的用户调用演示界面

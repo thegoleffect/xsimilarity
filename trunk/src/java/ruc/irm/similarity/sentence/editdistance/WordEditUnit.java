@@ -1,7 +1,7 @@
 package ruc.irm.similarity.sentence.editdistance;
 
 import ruc.irm.similarity.sentence.SegmentProxy.Word;
-import ruc.irm.similarity.word.hownet.concept.MyConceptParser;
+import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
 
 public class WordEditUnit extends EditUnit {
 	private Word word = null;
@@ -27,7 +27,7 @@ public class WordEditUnit extends EditUnit {
 		if(word.getPos()!=other.word.getPos()){
 			return 1.0;
 		}
-		return 1 - MyConceptParser.getInstance().getSimilarity(getUnitString(), other.getUnitString());
+		return 1 - XiaConceptParser.getInstance().getSimilarity(getUnitString(), other.getUnitString());
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class WordEditUnit extends EditUnit {
 		if(word.getPos()!=otherWord.getPos()){
 			return false;
 		}
-		double sim = MyConceptParser.getInstance().getSimilarity(getUnitString(), otherUnit.getUnitString());
+		double sim = XiaConceptParser.getInstance().getSimilarity(getUnitString(), otherUnit.getUnitString());
 		return sim>0.85;
 	}
 }

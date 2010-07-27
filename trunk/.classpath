@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.8.jar"/>
 	<classpathentry kind="lib" path="lib/ictclas4j.jar"/>
 	<classpathentry kind="lib" path="lib/google-collect-1.0.jar" sourcepath="/home/work/down/google-collect-1.0/src-1.0.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
