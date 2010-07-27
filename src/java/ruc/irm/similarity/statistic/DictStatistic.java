@@ -3,24 +3,25 @@ package ruc.irm.similarity.statistic;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.events.Characters;
-import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import ruc.irm.similarity.word.hownet.concept.MyConceptParser;
+import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
 
-
-public class SegmentDictTest {
+/**
+ * 用于统计分词词典文件中的概念出现数量
+ * 
+ * @author xiatian
+ *
+ */
+public class DictStatistic {
 	/**
-	 * 从指定的xml文件加载词典文件，该方法可以多次加载不同的文件，加载后系统会自动合并词典
+	 * 从指定的xml文件加载词典文件
 	 * @param xmlFile
 	 * @param gzCompressed 是否再用gz格式对词典进行了压缩
 	 * @return
@@ -55,7 +56,7 @@ public class SegmentDictTest {
 								if(!itemStartElement.getName().toString().equals("item")) continue;
 								String word = itemStartElement.getAttributeByName(QName.valueOf("word")).getValue();
 								word = head + word;
-								if(MyConceptParser.getInstance().isConcept(word)){
+								if(XiaConceptParser.getInstance().isConcept(word)){
 									conceptCount++;
 								}
 								count++;
@@ -75,8 +76,4 @@ public class SegmentDictTest {
 		}
 	}
 	
-	public static void main(String[] args) {
-		SegmentDictTest test = new SegmentDictTest();
-		test.testFromXml("./db/coredict.xml.gz", true);
-	}
 }

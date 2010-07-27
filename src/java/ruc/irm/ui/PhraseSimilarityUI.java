@@ -1,4 +1,4 @@
-package ruc.irm.similarity.phrase;
+package ruc.irm.ui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import ruc.irm.similarity.phrase.PhraseSimilarity;
 
 /**
  * 短语相似度的调用演示界面

@@ -60,11 +60,4 @@ public class CharBasedSimilarity implements Similaritable {
 		return str == null || str.trim().equals("");
 	}
 	
-	public static void main(String[] args) {
-		CharBasedSimilarity sim = new CharBasedSimilarity();
-		String s1 = "手机";
-		String s2 = "飞机";
-		
-		System.out.println(sim.getSimilarity(s1, s2));
-	}
 }

@@ -21,7 +21,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 /**
- * 训练及测试类
+ * 临时训练及测试类
  * 
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
@@ -32,7 +32,8 @@ public class Training {
         WordTendency tendency = new HownetWordTendency();
         File f = new File("./dict/sentiment/负面情感词语（中文）.txt");
         if(testPositive){
-            f = new File("./dict/sentiment/正面情感词语（中文）.txt");
+            //f = new File("./dict/sentiment/正面情感词语（中文）.txt");
+            f = new File("./dict/sentiment/正面评价词语（中文）.txt");
         }
         String encoding = "utf-8";
         BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(f),    encoding));
@@ -81,7 +82,7 @@ public class Training {
 			if(line.length()>5) continue;
 			wordCount++;
 			String word = line.trim();
-			Collection<Concept> concepts = parser.getConcepts(word);
+			Collection<Concept> concepts = parser.getInnerConcepts(word);
 			//由于目前的词典为知网2000版本，所以默认情况下仅对词典中出现的概念进行统计
 			if(BlankUtils.isBlank(concepts) && autoCombineConcept ){
 				concepts = parser.autoCombineConcepts(word, null);
@@ -131,26 +132,38 @@ public class Training {
 		}
 		Collections.sort(keys);
 		
-		for(Integer key: keys){
+		int smallSememeCount = 0; //较少出现的不同义原数量
+		int smallAppearTotal = 0;    //较少出现的义原在概念众出现的次数总和
+		for(int index=(keys.size()-1); index>=0; index--){
+		    Integer key = keys.get(index);
 		    Collection<String> values = map2.get(key);
-		    System.out.print(key + ": ");
+		    double ratio =  (key*100.0/conceptCount);
+		    System.out.print(key + "(" + ratio + "%): ");
 		    for(String v:values){
 		        System.out.print(v+ "\t");
 		    }
 		    System.out.println();
+		    if(ratio<0.7){
+		        smallSememeCount += values.size();
+		        smallAppearTotal += key*values.size();
+		    }
 		}		
 		
+		System.out.println("small info: ");
+		System.out.println("\tdifferent sememes:" + smallSememeCount);
+		System.out.println("\tappear count:" + smallAppearTotal);
+        System.out.println("\tratio:" + smallAppearTotal*100.0/conceptCount);
 		System.out.println("wordCount:" + wordCount);
 		System.out.println("conceptCount:" + conceptCount);
 	}
 
     public static void main(String[] args) throws IOException {
         Training training = new Training();
-//        training.countSentimentDistribution();
-        System.out.println("test positive:");
-        training.test(true);
-        
-        System.out.println("test negative:");
-        training.test(false);
+        training.countSentimentDistribution();
+//        System.out.println("test positive:");
+//        training.test(true);
+//        
+//        System.out.println("test negative:");
+        //training.test(false);
     }
 }

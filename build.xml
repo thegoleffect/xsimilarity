@@ -91,6 +91,7 @@
 				<include name="src/**/*.*" />
 				<include name="docs/**/*.*" />
 				<include name="*.*" />
+				<exclude name="**/LCMC.zip"/>
 			</fileset>
 		</jar>
 	</target>

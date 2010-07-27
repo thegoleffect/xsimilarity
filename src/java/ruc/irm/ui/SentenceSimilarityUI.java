@@ -1,4 +1,4 @@
-package ruc.irm.similarity.sentence;
+package ruc.irm.ui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

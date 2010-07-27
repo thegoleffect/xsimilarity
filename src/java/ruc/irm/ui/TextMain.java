@@ -1,4 +1,4 @@
-package ruc.irm.similarity.text;
+package ruc.irm.ui;
 
 public class TextMain {
 	
