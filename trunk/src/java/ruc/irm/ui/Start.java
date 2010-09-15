@@ -16,7 +16,6 @@ import javax.swing.plaf.FontUIResource;
 
 import ruc.irm.similarity.sentence.SegmentProxy;
 import ruc.irm.similarity.util.About;
-import ruc.irm.similarity.word.hownet2.sememe.SememeTreeUI;
 
 /**
  * 相似度计算软件包演示启动类
@@ -24,11 +23,11 @@ import ruc.irm.similarity.word.hownet2.sememe.SememeTreeUI;
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
-public class Main extends JFrame {
+public class Start extends JFrame {
 
 	private static final long serialVersionUID = 85744461208L;
 
-	public Main() {
+	public Start() {
 		this.setTitle("相似度计算演示程序");
 		this.setSize(420, 700);
 		this.setLocationRelativeTo(null);
@@ -82,7 +81,7 @@ public class Main extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			public void run() {
-				Main w = new Main();
+				Start w = new Start();
 				w.setVisible(true);
 			}
 		});
