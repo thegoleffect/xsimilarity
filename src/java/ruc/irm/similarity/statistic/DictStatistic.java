@@ -16,8 +16,8 @@ import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
 /**
  * 用于统计分词词典文件中的概念出现数量
  * 
- * @author xiatian
- *
+ * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
+ * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
 public class DictStatistic {
 	/**
