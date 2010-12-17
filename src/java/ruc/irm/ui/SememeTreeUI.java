@@ -189,8 +189,8 @@ public class SememeTreeUI extends JFrame {
          */
         Multimap<String, Sememe> sememes = ArrayListMultimap.create();
 
-        String sememeFile = SememeTreeUI.class.getPackage().getName().replaceAll("\\.", "/") + "/sememe.xml.gz";
-        InputStream input = SememeTreeUI.class.getClassLoader().getResourceAsStream(sememeFile);
+        String sememeFile = Sememe.class.getPackage().getName().replaceAll("\\.", "/") + "/sememe.xml.gz";
+        InputStream input = Sememe.class.getClassLoader().getResourceAsStream(sememeFile);
         input = new GZIPInputStream(input);
 
         System.out.println("[" + SememeTreeUI.class.getSimpleName() + "]loading sememes into sememe tree...");
