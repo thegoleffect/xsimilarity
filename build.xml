@@ -89,6 +89,7 @@
 		<jar destfile="${build.dir}/similarity-src.zip">
 			<fileset dir="${basedir}">
 				<include name="src/**/*.*" />
+				<include name="lib/**/*.*" />
 				<include name="docs/**/*.*" />
 				<include name="*.*" />
 				<exclude name="**/LCMC.zip"/>
