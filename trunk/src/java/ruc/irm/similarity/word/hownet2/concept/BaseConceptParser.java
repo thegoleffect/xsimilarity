@@ -16,8 +16,8 @@ import javax.xml.stream.events.XMLEvent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import ruc.irm.similarity.Similaritable;
 import ruc.irm.similarity.util.BlankUtils;
+import ruc.irm.similarity.word.WordSimilarity;
 import ruc.irm.similarity.word.hownet.HownetMeta;
 import ruc.irm.similarity.word.hownet2.sememe.BaseSememeParser;
 
@@ -31,7 +31,7 @@ import com.google.common.collect.Multimap;
  * <br/><br/>
  * improvement:
  * <ol>
- * 	<li>两个义原集合的运算方式支持均值方式或Fuzzy方式</li>
+ * 	<li>两个义原集合的运算方式，支持均值方式或Fuzzy方式</li>
  * </ol>
  * 
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
@@ -39,7 +39,7 @@ import com.google.common.collect.Multimap;
  * 
  * @see ke.commons.similarity.Similariable
  */
-public abstract class BaseConceptParser implements HownetMeta, Similaritable{
+public abstract class BaseConceptParser implements HownetMeta, WordSimilarity{
 	/** the logger */
 	protected Log LOG = LogFactory.getLog(this.getClass());
 
@@ -209,7 +209,7 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 	 */
 	protected double getSimilarity(String[] sememes1, String[] sememes2) {
 		if(currentSetOperateType == SET_OPERATE_TYPE.FUZZY){
-			return getSimilarity_AVG(sememes1, sememes2);
+			return getSimilarity_Fuzzy(sememes1, sememes2);
 		}else {
 			return getSimilarity_AVG(sememes1, sememes2);
 		}
@@ -220,7 +220,8 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 		this.currentSetOperateType = type;
 	}
 	/**
-	 * 考虑到义原集合中的义原先后关系影响不大，因此计算两个集合的义原相似度的平均值作为这两个义原集合的相似度, 即此处采用的是均值方法：
+	 * 考虑到义原集合中的义原先后关系影响不大，因此计算两个集合的义原相似度的平均值作为这两个义原集合的相似度, 
+	 * 即此处采用的是均值方法：
 	 * The rank of a value assignment is the average of the weights of the constituent values.
 	 * @param sememes1
 	 * @param sememes2
@@ -311,8 +312,8 @@ public abstract class BaseConceptParser implements HownetMeta, Similaritable{
 	 * @param sememes2
 	 * @return
 	 */
-	protected double getFuzzySimilarity(String[] sememes1, String[] sememes2) {
-		//TODO 
+	protected double getSimilarity_Fuzzy(String[] sememes1, String[] sememes2) {
+		//@ TODO 
 		return 0.0;
 	}
 	

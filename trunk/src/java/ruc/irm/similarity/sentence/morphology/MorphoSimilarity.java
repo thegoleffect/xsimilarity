@@ -3,14 +3,14 @@ package ruc.irm.similarity.sentence.morphology;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import ruc.irm.similarity.Similaritable;
 import ruc.irm.similarity.sentence.SegmentProxy;
 import ruc.irm.similarity.sentence.SegmentProxy.Word;
-import ruc.irm.similarity.word.hownet.Hownet;
+import ruc.irm.similarity.sentence.SentenceSimilarity;
+import ruc.irm.similarity.word.WordSimilarity;
+import ruc.irm.similarity.word.hownet2.concept.XiaConceptParser;
 
 /**
  * 基于词形和词序的句子相似度计算算法，考虑了语义因素<BR>
@@ -19,7 +19,7 @@ import ruc.irm.similarity.word.hownet.Hownet;
  * @author <a href="mailto:iamxiatian@gmail.com">夏天</a>
  * @organization 中国人民大学信息资源管理学院 知识工程实验室
  */
-public class MorphoSimilarity implements Similaritable{
+public class MorphoSimilarity implements SentenceSimilarity {
     private static Log LOG = LogFactory.getLog(MorphoSimilarity.class);
     
     /** 词形相似度占总相似度的比重 */
@@ -27,7 +27,7 @@ public class MorphoSimilarity implements Similaritable{
     /** 次序相似度占总相似度的比重 */
     private final double LAMBDA2 = 0.0;   
     /** 词语相似度的计算 */
-    private Similaritable wordSimilariter = null;
+    private WordSimilarity wordSimilarity = null;
     
     private static String FILTER_CHARS = " 　，。；？《》()｜！,.;?<>|_^…!";
     
@@ -42,7 +42,7 @@ public class MorphoSimilarity implements Similaritable{
     
     private MorphoSimilarity(){
     	LOG.debug("used hownet wordsimilarity.");
-    	this.wordSimilariter = Hownet.instance();
+    	this.wordSimilarity = XiaConceptParser.getInstance();
     	//this.segmenter = SegmentFactory.getInstance().getParser();
     }
     
@@ -97,7 +97,7 @@ public class MorphoSimilarity implements Similaritable{
     	double[][] scores = new double[max][max];
     	for(int i=0; i<firstList.length; i++){
     		for(int j=0; j<secondList.length; j++){
-    			scores[i][j] = wordSimilariter.getSimilarity(firstList[i], secondList[j]);
+    			scores[i][j] = wordSimilarity.getSimilarity(firstList[i], secondList[j]);
     		}
     	}
 
